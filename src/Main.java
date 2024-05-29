@@ -31,6 +31,12 @@ public class Main {
         System.out.println(orders);
         List<Order> orderWithBabyCategory = orders.stream().filter(order -> order.getProducts().stream().anyMatch(product -> Objects.equals(product.getCategory(), "Baby"))).toList();
         System.out.println("\n Ordini che contengono la categoria Baby" + orderWithBabyCategory);
+
+        //Es3
+        System.out.println("__________Es3__________");
+        List<Product> discount = products.stream().filter(product -> Objects.equals(product.getCategory(), "Boys")).toList();
+        discount.forEach(product -> product.setPrice(product.getPrice() * 0.9));
+        System.out.println("Prodotti appartenenti alla categoria Boys scontati:\n" + discount);
     }
 
     private static List<Product> getProductList(int quantity) {
