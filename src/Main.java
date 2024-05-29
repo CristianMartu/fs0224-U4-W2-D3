@@ -39,13 +39,9 @@ public class Main {
         System.out.println("Prodotti appartenenti alla categoria Boys scontati:\n" + discount);
 
         //Es4
-        System.out.println("__________Es3__________");
+        System.out.println("__________Es4__________");
         List<Order> customerTier2 = orders.stream().filter(order -> order.getCustomer().getTier() == 2 && order.getOrderDate().isAfter(LocalDate.now().minusDays(1)) && order.getOrderDate().isBefore(LocalDate.now().plusDays(6))).toList();
-//        System.out.println(customerTier2);
-        List<Product> productList = new ArrayList<>();
-        for (Order order : customerTier2) {
-            productList.addAll(order.getProducts());
-        }
+        List<Product> productList = customerTier2.stream().flatMap(order -> order.getProducts().stream()).toList();
 
         System.out.println("Prodotti ordinati dal cliente di livello 2\n" + productList);
     }
