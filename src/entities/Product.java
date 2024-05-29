@@ -1,13 +1,15 @@
 package entities;
 
+import java.util.Random;
+
 public class Product {
     private long id;
     private String name;
     private String category;
     private Double price;
 
-    public Product(long id, Double price, String category, String name) {
-        this.id = id;
+    public Product(Double price, String category, String name) {
+        this.setId(new Random().nextLong(100000, 1000000));
         this.price = price;
         this.category = category;
         this.name = name;
@@ -43,5 +45,15 @@ public class Product {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "\tProduct{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", price=" + price +
+                "}\n";
     }
 }

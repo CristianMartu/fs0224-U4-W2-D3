@@ -2,6 +2,7 @@ package entities;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 
 public class Order {
     private Long id;
@@ -11,8 +12,8 @@ public class Order {
     private List<Product> products;
     private Customer customer;
 
-    public Order(Long id, String status, LocalDate orderDate, LocalDate deliveryDate, List<Product> products, Customer customer) {
-        this.id = id;
+    public Order(String status, LocalDate orderDate, LocalDate deliveryDate, List<Product> products, Customer customer) {
+        this.setId(new Random().nextLong(100000, 1000000));
         this.status = status;
         this.orderDate = orderDate;
         this.deliveryDate = deliveryDate;
@@ -66,5 +67,17 @@ public class Order {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", status='" + status + '\'' +
+                ", orderDate=" + orderDate +
+                ", deliveryDate=" + deliveryDate +
+                ", customer=" + customer +
+                ", products= \n\t" + products +
+                "}\n";
     }
 }

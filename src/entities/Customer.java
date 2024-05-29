@@ -1,12 +1,14 @@
 package entities;
 
+import java.util.Random;
+
 public class Customer {
     private long id;
     private String name;
     private int tier;
 
-    public Customer(long id, String name, int tier) {
-        this.id = id;
+    public Customer(String name, int tier) {
+        this.setId(new Random().nextLong(100000, 1000000));
         this.name = name;
         this.tier = tier;
     }
@@ -33,5 +35,14 @@ public class Customer {
 
     public void setTier(int tier) {
         this.tier = tier;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", tier=" + tier +
+                '}';
     }
 }
