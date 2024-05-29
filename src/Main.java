@@ -37,6 +37,17 @@ public class Main {
         List<Product> discount = products.stream().filter(product -> Objects.equals(product.getCategory(), "Boys")).toList();
         discount.forEach(product -> product.setPrice(product.getPrice() * 0.9));
         System.out.println("Prodotti appartenenti alla categoria Boys scontati:\n" + discount);
+
+        //Es4
+        System.out.println("__________Es3__________");
+        List<Order> customerTier2 = orders.stream().filter(order -> order.getCustomer().getTier() == 2 && order.getOrderDate().isAfter(LocalDate.now().minusDays(1)) && order.getOrderDate().isBefore(LocalDate.now().plusDays(6))).toList();
+//        System.out.println(customerTier2);
+        List<Product> productList = new ArrayList<>();
+        for (Order order : customerTier2) {
+            productList.addAll(order.getProducts());
+        }
+
+        System.out.println("Prodotti ordinati dal cliente di livello 2\n" + productList);
     }
 
     private static List<Product> getProductList(int quantity) {
@@ -50,13 +61,15 @@ public class Main {
     private static List<Order> getOrderList() {
         Customer customer = new Customer("Mario", 2);
         Customer customer2 = new Customer("Cristian", 3);
+        Customer customer3 = new Customer("Mario", 2);
         List<Product> products = new ArrayList<>();
         createProducts.create(2, "Smartphone", "samsung", products);
         createProducts.create(3, "Books", "book", products);
         createProducts.create(4, "Boys", "clothes", products);
         Order order1 = new Order("In consegna", LocalDate.now(), LocalDate.now().plusDays(5), products, customer);
         Order order2 = new Order("In attesa", LocalDate.now(), LocalDate.now().plusDays(5), getProductList(3), customer2);
-        Order[] list = {order1, order2};
+        Order order3 = new Order("In consegna", LocalDate.now(), LocalDate.now().plusDays(5), products, customer3);
+        Order[] list = {order1, order2, order3};
         return Arrays.stream(list).toList();
     }
 }
